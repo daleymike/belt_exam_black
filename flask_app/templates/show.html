@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sasquatch Websighting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="d-flex justify-content-between align-items-center" style="margin-top: 5px;">
+        <h1 style="margin-left: 15px;">Sasquatch Websighting</h1>
+        <div>
+            <h3 class="text-center" style="margin-left: 15px;">{{this_user.first_name}} {{this_user.last_name}}</h3>
+            <p> <a href="/dashboard" style="margin-right: 15px;" class="btn btn-outline-dark">Dashboard</a> <a href="/logout" style="margin-right: 15px;" class="btn btn-outline-dark">Logout</a></p>
+        </div>
+    </div>
+    <div>
+        <h2 style="margin-left: 15px; margin-top: 40px;">{{sighting_info.location}} on {{sighting_info.date}}</h2>
+        <div class="border border-dark d-flex justify-content-between" style="margin-left: 15px; margin-top: 15px; padding: 10px; width: 800px;">
+            <div style="width: 400px;">
+                <p style="font-weight: bold;">What Happened:</p>
+                <p style="text-indent: 15px;">{{sighting_info.what_happened}}</p><br>
+                <p style="font-weight: bold;"># of Sasquatches:</p>
+                <p style="text-indent: 15px;">{{sighting_info.num_of_sasquatch}}</p>
+                <p style="font-weight: bold;">Reported by:</p>
+                <p style="text-indent: 15px;">{{sighting_info.user_id['first_name']}} {{sighting_info.user_id['last_name']}}</p>
+            </div>
+            <div style="width: 400px;" class="text-center">
+                <p style="font-weight: bold;">Skeptics:</p>
+                {% for skeptic in sighting_info.user_skeptics %}
+                <p>{{skeptic['first_name']}} {{skeptic['last_name']}}</p>
+                {% endfor %} 
+                
+                <a href="/destroy/skeptic/{{sighting_info.id}}" class="btn btn-outline-danger">I believe!</a>
+                <a href="/skeptical/{{sighting_info.id}}" class="btn btn-outline-danger">I'm Skeptical</a>
+                
+            </div>
+        </div>
+
+                
+        
+    </div>
+</body>
+</html>
